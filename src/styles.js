@@ -16,7 +16,6 @@ export const Container = styled.div`
 export const H1 = styled.h1`
     color: #FFF;
     text-align: center;
-    font-family: Roboto, 'Sans Serif';
     font-size: 34px;
     font-style: normal;
     line-height: normal;
@@ -34,6 +33,7 @@ background: linear-gradient(157deg, rgba(255, 255, 255, 0.60) 0.84%, rgba(255, 2
 padding: 50px 36px;
 display: flex;
 flex-direction: column;
+height: 100vh;
 
 
 `
@@ -59,7 +59,6 @@ outline: none;
 margin-bottom: 34px;
 
 color: #FFF;
-font-family: Roboto;
 font-size: 20px;
 font-style: normal;
 font-weight: 400;
@@ -80,6 +79,44 @@ line-height: 28px;
 cursor: pointer;
 width: 342px;
 height: 74px;
+
+&:hover{
+    opacity: 0.8;
+}
+
+&:active{
+    opacity: 0.5;
+}
+
+`
+export const User = styled.li`
+
+display: flex;
+justify-content: space-around;
+align-items: center;
+border-radius: 14px;
+background: rgba(255, 255, 255, 0.25);
+box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+border: none;
+width: 342px;
+height: 58px;
+outline: none;
+color: #fff;
+margin-top: 20px;
+
+
+p{
+    color: #FFF;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+ button{
+    background: none;
+    border: none;
+    cursor: pointer;
+ }
 
 `
 
