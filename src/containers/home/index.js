@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import People from "./assets/people.png";
-import Arrow from "./assets/arrowright.png";
-import Trash from "./assets/trash.png";
+import People from "../../assets/people.png";
+import Arrow from "../../assets/arrowright.png";
+import Trash from "../../assets/trash.png";
 import { Container, H1, Image, ContainerItems, InputLabel, Input, Button, User } from "./styles";
 
 const App = () => {
@@ -12,24 +12,30 @@ const App = () => {
   //estado no react é imutavel
 
   async function addNewUser() {
-    /* const { data: newUser } = await axios.post("http://localhost:3001/users", {
+    const { data: newUser } = await axios.post("http://localhost:3001/users", {
       name: inputName.current.value,
       age: inputAge.current.value,
     });
 
     console.log(newUser);
-    setUsers([...users, newUser]); */
+    setUsers([...users, newUser]); 
 
-    const { data: newUsers } = await axios.get("http://localhost:3001/users");
-    setUsers(newUsers);
+    
   }
 
   useEffect(() => {
-    //inicia assim que a pagina carregar
-    console.log("abcde");
-  }, [users]);
-  function deleteUSer(userId) {
-    console.log(userId);
+    async function fetchUsers(){
+      const { data: newUsers } = await axios.get("http://localhost:3001/users");
+
+      setUsers(newUsers);
+    }
+    fetchUsers()
+  }, []);
+
+
+  async function deleteUSer(userId) {
+
+    await axios.delete(`http://localhost:3001/users/${userId}`)
     const newUsers = users.filter((user) => user.id !== userId);
     setUsers(newUsers);
   }
