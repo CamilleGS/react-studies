@@ -1,9 +1,14 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+
 import People from "../../assets/people.png";
 import Arrow from "../../assets/arrowright.png";
-import Trash from "../../assets/trash.png";
-import { Container, H1, Image, ContainerItems, InputLabel, Input, Button, User } from "./styles";
+import Button from "../../components/button";
+import { Container, Image, InputLabel, Input} from "./styles";
+import H1 from "../../components/title"
+import ContainerItems from "../../components/containerItems"
 
 const App = () => {
   const [users, setUsers] = useState([]); //react hooks => ferramentas auxiliares
@@ -20,26 +25,17 @@ const App = () => {
     console.log(newUser);
     setUsers([...users, newUser]); 
 
-    
+
   }
+ const navigate = useNavigate();  // Hook para navegação programática
 
-  useEffect(() => {
-    async function fetchUsers(){
-      const { data: newUsers } = await axios.get("http://localhost:3001/users");
+ const handleButtonClick = async () => {
+  // Primeiro, adiciona o novo usuário
+  await addNewUser();
 
-      setUsers(newUsers);
-    }
-    fetchUsers()
-  }, []);
-
-
-  async function deleteUSer(userId) {
-
-    await axios.delete(`http://localhost:3001/users/${userId}`)
-    const newUsers = users.filter((user) => user.id !== userId);
-    setUsers(newUsers);
-  }
-
+  // Depois de adicionar, navega para a rota '/usuarios'
+  navigate('/usuarios');
+};
   return (
     <Container>
       <Image alt="logo-img" src={People} />
@@ -51,21 +47,9 @@ const App = () => {
         <InputLabel>Idade</InputLabel>
         <Input ref={inputAge} placeholder="Idade" />
         {/*  não pode por parenteses no add newUser */}
-        <Button onClick={addNewUser}>
+        <Button  onClick={handleButtonClick}>
           Cadastrar <img src={Arrow} alt="arrow" />
         </Button>
-
-        <ul>
-          {users.map((user) => (
-            <User key={user.id}>
-              <p>{user.name} </p> <p>{user.age}</p>
-              <button onClick={() => deleteUSer(user.id)}>
-                {" "}
-                <img src={Trash} alt="trash" />
-              </button>
-            </User>
-          ))}
-        </ul>
       </ContainerItems>
     </Container>
   );

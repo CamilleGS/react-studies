@@ -1,27 +1,18 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import People from "../../assets/people.png";
+import { useNavigate } from "react-router-dom";
+import Avatar from "../../assets/avatar.svg";
 import Arrow from "../../assets/arrowright.png";
 import Trash from "../../assets/trash.png";
-import { Container, H1, Image, ContainerItems, InputLabel, Input, Button, User } from "./styles";
+import H1 from "../../components/title"
+import ContainerItems from "../../components/containerItems"
 
-const App = () => {
+import { Container, Image, Button, User } from "./styles";
+
+const Users = () => {
   const [users, setUsers] = useState([]); //react hooks => ferramentas auxiliares
-  const inputName = useRef();
-  const inputAge = useRef();
-  //estado no react é imutavel
-
-  async function addNewUser() {
-    const { data: newUser } = await axios.post("http://localhost:3001/users", {
-      name: inputName.current.value,
-      age: inputAge.current.value,
-    });
-
-    console.log(newUser);
-    setUsers([...users, newUser]); 
-
-    
-  }
+  
+  
 
   useEffect(() => {
     async function fetchUsers(){
@@ -40,20 +31,19 @@ const App = () => {
     setUsers(newUsers);
   }
 
+  const navigate = useNavigate();  // Hook para navegação programática
+
+  const handleClick = () => {
+    navigate('/');  // Redireciona para a rota '/usuarios'
+  };
+
   return (
     <Container>
-      <Image alt="logo-img" src={People} />
-      <ContainerItems>
-        <H1>Olá</H1>
-        <InputLabel>Nome</InputLabel>
-        <Input ref={inputName} placeholder="Nome" />
-
-        <InputLabel>Idade</InputLabel>
-        <Input ref={inputAge} placeholder="Idade" />
-        {/*  não pode por parenteses no add newUser */}
-        <Button onClick={addNewUser}>
-          Cadastrar <img src={Arrow} alt="arrow" />
-        </Button>
+      <Image alt="logo-img" src={Avatar} />
+      <ContainerItems isBlur={true}>
+        <H1>Usuários</H1>
+        
+       
 
         <ul>
           {users.map((user) => (
@@ -66,9 +56,13 @@ const App = () => {
             </User>
           ))}
         </ul>
+
+        <Button onClick={handleClick}>
+        <img src={Arrow} alt="arrow" /> Voltar
+        </Button>
       </ContainerItems>
     </Container>
   );
 };
 
-export default App;
+export default Users;
