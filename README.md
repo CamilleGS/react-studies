@@ -1,7 +1,7 @@
 # 🚀 User Management App (React + API)
 
 ## 📌 Description
-This project is a simple React application that integrates with a local API (`order-management-api`), which is already available in one of my GitHub repositories. The application allows users to register, list, and delete users by interacting with the API.
+This project is a simple React application that integrates with a local API (`user-management-api`), which is already available in one of my GitHub repositories. The application allows users to register, list, and delete users by interacting with the API.
 
 ## ✨ Features
 - **📝 User Registration:** Users can enter their name and age, then submit the form to store the data via a `POST` request.
@@ -28,8 +28,8 @@ This project is a simple React application that integrates with a local API (`or
    ```sh
    npm install
    ```
-4. Ensure the `order-management-api` is running locally on `http://localhost:3001`.
-   If you haven't cloned it yet, you can find it in my GitHub repository: [order-management-api](https://github.com/CamilleGS/order-management-api)
+4. Ensure the `user-management-api` is running locally on `http://localhost:3001`.
+   If you haven't cloned it yet, you can find it in my GitHub repository: [order-management-api](https://github.com/CamilleGS/nodejs-studies)
 5. Start the React app:
    ```sh
    npm start
