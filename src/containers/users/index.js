@@ -6,8 +6,9 @@ import Arrow from "../../assets/arrowright.png";
 import Trash from "../../assets/trash.png";
 import H1 from "../../components/title"
 import ContainerItems from "../../components/containerItems"
+import Button from "../../components/button"
 
-import { Container, Image, Button, User } from "./styles";
+import { Container, Image, User } from "./styles";
 
 const Users = () => {
   const [users, setUsers] = useState([]); //react hooks => ferramentas auxiliares
@@ -57,7 +58,7 @@ const Users = () => {
           ))}
         </ul>
 
-        <Button onClick={handleClick}>
+        <Button isBack={true} onClick={handleClick}>
         <img src={Arrow} alt="arrow" /> Voltar
         </Button>
       </ContainerItems>
